@@ -25,7 +25,7 @@ def get_dbs():
 
 @application.route("/create_db/<db_name>", methods=['GET'])
 def create_db(db_name):
-	mydb = mysql.connector.connect(host="mysql-python", user="user1", password="mypa55")
+	mydb = mysql.connector.connect(host="mysql-python", user="root", password="r00tpa55")
 	c = mydb.cursor()
 
 	c.execute("show databases")
