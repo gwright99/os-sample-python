@@ -23,5 +23,20 @@ def get_dbs():
 	return f"Databases are: {dbs}."
 
 
+@application.route("/create_db/<db_name>", methods=['GET'])
+def create_db(db_name):
+	mydb = mysql.connector.connect(host="mysql-python", user="user1", password="mypa55")
+	c = mydb.cursor()
+
+	c.execute("show databases")
+	dbs = [x for x in c]
+
+	if db_name in dbs:
+		return f"Cannot create database {db_name}; it already exists"
+	else:
+		c.execute(f"CREATE DATABASE {db_name}")
+		return f"Database {db_name} created. Please confirm by using /get_dbs"
+
+
 if __name__ == "__main__":
     application.run()
