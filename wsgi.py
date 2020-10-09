@@ -30,7 +30,7 @@ def get_dbs():
 
 	
 	cursor.execute("show databases")
-	dbs = ','.join(str(x[0]) for x in c)
+	dbs = ','.join(str(x[0]) for x in cursor)
 	return f"\nDatabases are: {dbs}.\n"
 
 
@@ -41,7 +41,7 @@ def create_db(db_name):
 	cursor = get_db_connection()
 
 	c.execute("show databases")
-	dbs = [x for x in c]
+	dbs = [x for x in cursor]
 
 	if db_name in dbs:
 		return f"\nCannot create database {db_name}; it already exists\n"
