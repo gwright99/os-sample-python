@@ -7,8 +7,9 @@ application = Flask(__name__)
 def get_db_connection():
 	mydb = mysql.connector.connect(host="mysql-python", user="root", password="r00tpa55")
 	# mydb = mysql.connector.connect(host="mysql-python", user="user1", password="mypa55")
-	mycursor = mydb.cursor()
-	return mycursor
+	#mycursor = mydb.cursor()
+	# return mycursor
+	return mydb
 
 
 @application.route("/")
@@ -26,7 +27,8 @@ def get_dbs():
 	#mydb = mysql.connector.connect(host="mysql-python", user="user1", password="mypa55")
 	# mydb = get_db_connection()
 	# c = mydb.cursor()
-	cursor = get_db_connection()
+	mydb = get_db_connection()
+	cursor = mydb.cursor()
 
 	
 	cursor.execute("show databases")
@@ -38,9 +40,10 @@ def get_dbs():
 def create_db(db_name):
 	# mydb = mysql.connector.connect(host="mysql-python", user="root", password="r00tpa55")
 	# c = mydb.cursor()
-	cursor = get_db_connection()
+	mydb = get_db_connection()
+	cursor = mydb.cursor()
 
-	c.execute("show databases")
+	cursor.execute("show databases")
 	dbs = [x for x in cursor]
 
 	if db_name in dbs:
