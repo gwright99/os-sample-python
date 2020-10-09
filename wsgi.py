@@ -49,7 +49,7 @@ def create_db(db_name):
 	if db_name in dbs:
 		return f"\nCannot create database {db_name}; it already exists\n"
 	else:
-		c.execute(f"CREATE DATABASE {db_name}")
+		cursor.execute(f"CREATE DATABASE {db_name}")
 		return f"\nDatabase {db_name} created. Please confirm by using /get_dbs\n"
 
 
